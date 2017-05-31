@@ -9,8 +9,11 @@
   </head>
 
   <body>
-    Hola <strong><%= current_user.email %> </strong><a href="users/sign_out">Cerrar Sesion</a>
-    <hr>
+    <% if !current_user.nil? %>
+    Hola <strong><%= current_user.email rescue nil %> </strong><a href="users/sign_out">Cerrar Sesion</a>
+      <hr>
+    <%end%>
+
     <%= yield %>
 
   </body>
