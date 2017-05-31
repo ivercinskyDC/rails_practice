@@ -1,0 +1,33 @@
+<%= form_with(model: house_hold, local: true) do |form| %>
+  <% if house_hold.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(house_hold.errors.count, "error") %> prohibited this house_hold from being saved:</h2>
+
+      <ul>
+      <% house_hold.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :house_hold_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :house_hold_description %>
+  </div>
+
+    <div class="field">
+      <%= form.label :members %>
+      <%= form.collection_select(:user_ids, User.where.not(:id => current_user), :id, :email, {include_hidden: false}, {:multiple => true, :selected => 0, :name => "house_hold[user_ids][]"}) %>
+    </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<hr>

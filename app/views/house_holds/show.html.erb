@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @house_hold.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @house_hold.description %>
+</p>
+
+<p>
+  <h3>Members</h3>
+  <ul>
+    <% @house_hold.users.each do |u| %>
+      <li><%= u.email %></li>
+    <% end %>
+  </ul>
+</p>
+
+<hr>
+<ul><li>agregar servicio</li></ul>
+<ul><li>invitar usuarios</li></ul>
+<%= link_to 'Edit', edit_house_hold_path(@house_hold) %> |
+<%= link_to 'Back', house_holds_path %>

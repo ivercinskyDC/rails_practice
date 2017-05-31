@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    Hola <strong><%= current_user.email %> </strong><a href="users/sign_out">Cerrar Sesion</a>
+    <hr>
     <%= yield %>
+
   </body>
 </html>
