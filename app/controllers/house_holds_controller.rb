@@ -72,6 +72,13 @@ class HouseHoldsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_house_hold
       @house_hold = HouseHold.find(params[:id])
+      if !@house_hold.users.to_a.include? current_user
+        flash[:notice] = "You are not a member of that House"
+        redirect_to :action => 'index'
+      end
+    rescue ActiveRecord::RecordNotFound
+        flash[:notice] = "House not Found"
+        redirect_to :action => 'index'
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

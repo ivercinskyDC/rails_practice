@@ -23,7 +23,7 @@
 
     <div class="field">
       <%= form.label :members %>
-      <%= form.collection_select(:user_ids, User.where.not(:id => current_user), :id, :email, {include_hidden: false}, {:multiple => true, :selected => 0, :name => "house_hold[user_ids][]"}) %>
+      <%= form.collection_select(:user_ids, User.all, :id, :email, {include_hidden: false}, {:multiple => true, :selected => 0, :name => "house_hold[user_ids][]"}) %>
     </div>
 
   <div class="actions">
