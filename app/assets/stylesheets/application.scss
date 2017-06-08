@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
- *= require font-awesome
- *= require_directory ./theme
  */
+
+@import 'bootstrap-reboot';
+@import 'bootstrap-grid';
+@import 'bootstrap';

@@ -15,5 +15,6 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require turbolinks
+//= requite bootstrap
 
 

@@ -4,7 +4,7 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.where(:user_id => current_user)
+    @expenses = Expense.where(:users_id => current_user)
   end
 
   # GET /expenses/1
@@ -25,7 +25,7 @@ class ExpensesController < ApplicationController
   # POST /expenses.json
   def create
     @expense = Expense.new(expense_params)
-    @expense.user = current_user
+    @expense.users_id = current_user.id
     respond_to do |format|
       if @expense.save
         format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
@@ -69,6 +69,6 @@ class ExpensesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def expense_params
-      params.require(:expense).permit(:expense_data, :name, :amount, :description)
+      params.require(:expense).permit(:date, :name, :amount, :description)
     end
 end
