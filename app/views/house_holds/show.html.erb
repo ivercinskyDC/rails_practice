@@ -11,6 +11,15 @@
 </p>
 
 <p>
+<h3>Admins</h3>
+<ul>
+  <% @house_hold.admins.each do |u| %>
+      <li><%= u.email %></li>
+  <% end %>
+</ul>
+</p>
+
+<p>
   <h3>Members</h3>
   <ul>
     <% @house_hold.users.each do |u| %>
@@ -19,9 +28,57 @@
   </ul>
 </p>
 
+
 <hr>
-<ul><li>agregar servicio</li></ul>
-<ul><li>invitar usuarios</li></ul>
-<%= link_to 'Agregar Servicio', new_service_path(:house_hold => @house_hold.id) %>
+
+<h4>Servicios</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Due Date</th>
+      <th>Is Paid?</th>
+      <th>Amount</th>
+      <th>Asignado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @house_hold.services.each do |s| %>
+      <tr>
+        <td><%= s.name %></td>
+        <td><%= s.due_date %></td>
+        <td><%= s.is_paid %></td>
+        <td><%= s.amount %></td>
+        <td><%= s.asignee.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<h4>Gastos</h4>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Place</th>
+    <th>Date</th>
+    <th>Amount</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @house_hold.expenses.each do |s| %>
+      <tr>
+        <td><%= s.name %></td>
+        <td><%= s.place %></td>
+        <td><%= s.expense_date %></td>
+        <td><%= s.amount %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Agregar Servicio', new_house_hold_service_path(@house_hold) %>
+<%= link_to 'Agregar Gasto', new_house_hold_expense_path(@house_hold) %>
 <%= link_to 'Edit', edit_house_hold_path(@house_hold) %> |
 <%= link_to 'Back', house_holds_path %>

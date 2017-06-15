@@ -2,7 +2,7 @@
 
 <p>
   <strong>Expense data:</strong>
-  <%= @expense.expense_data %>
+  <%= @expense.expense_date %>
 </p>
 
 <p>
@@ -20,5 +20,5 @@
   <%= @expense.description %>
 </p>
 
-<%= link_to 'Edit', edit_expense_path(@expense) %> |
-<%= link_to 'Back', expenses_path %>
+<%= link_to 'Edit', edit_user_expense_path(current_user, @expense) %> |
+<%= link_to "Back", request.referer.present? ? request.referer : default_path %>

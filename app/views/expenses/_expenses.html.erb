@@ -1,0 +1,13 @@
+<table class="table table-bordered primary table-responsive">
+  <thead>
+  <tr>
+    <th>Compra</th>
+    <th>Gasto</th>
+  </tr>
+  </thead>
+  <% items.each do |expense| %>
+      <tr>
+        <%= render expense, item: expense%>
+      </tr>
+  <% end %>
+</table>

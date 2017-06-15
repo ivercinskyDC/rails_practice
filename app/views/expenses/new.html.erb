@@ -1,5 +1,9 @@
 <h1>New Expense</h1>
+<% if @house_hold.present? %>
+    <%= render 'form', parent: @house_hold, expense: @expense %>
+<% else %>
+    <%= render 'form', parent: @user, expense: @expense %>
+<% end %>
 
-<%= render 'form', expense: @expense %>
 
-<%= link_to 'Back', expenses_path %>
+<%= link_to "Back", request.referer.present? ? request.referer : default_path %>

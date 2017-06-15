@@ -1,12 +1,16 @@
 class WelcomeController < ApplicationController
   def index
-    @houses = HouseHold.where(:master_id => current_user)
-    @services = Service.where(:asignee_id => current_user)
-    @expenses = Expense.where(:users_id => current_user)
-    @house_expenses = []
-    @houses.each do |house|
-      expense = Expense.where(:house_holds_id => house.id).first
-      @house_expenses << expense unless expense.nil?
+    @houses = current_user.house_holds
+
+    @services = current_user.services
+    @expenses = current_user.expenses
+    @house_expenses = current_user.admin_houses.first.expenses
+    current_user.admin_houses.each do |ah|
+      @house_expenses << ah.expenses
+    end
+
+    current_user.house_holds.each do |ah|
+      @house_expenses << ah.expenses
     end
   end
 end

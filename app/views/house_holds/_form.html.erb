@@ -22,8 +22,19 @@
   </div>
 
     <div class="field">
+      <%= form.label :address %>
+      <%= form.text_area :address, id: :house_hold_address %>
+    </div>
+
+
+    <div class="field">
       <%= form.label :members %>
       <%= form.collection_select(:user_ids, User.all, :id, :email, {include_hidden: false}, {:multiple => true, :selected => 0, :name => "house_hold[user_ids][]"}) %>
+    </div>
+
+    <div class="field">
+      <%= form.label :admins %>
+      <%= form.collection_select(:admin_ids, User.all, :id, :email, {include_hidden: false}, {:multiple => true, :selected => 0, :name => "house_hold[admin_ids][]"}) %>
     </div>
 
   <div class="actions">

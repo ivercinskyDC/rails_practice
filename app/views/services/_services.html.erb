@@ -1,0 +1,14 @@
+<table class="table table-bordered table-responsive">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Fecha de Vto</th>
+    </tr>
+  </thead>
+  <% @services.each do |service| %>
+      <tr>
+        <%= render service, item: service%>
+      </tr>
+  <% end %>
+</table>

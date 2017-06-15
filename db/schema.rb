@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531015646) do
+ActiveRecord::Schema.define(version: 20170613191236) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,14 +20,20 @@ ActiveRecord::Schema.define(version: 20170531015646) do
     t.text "description"
     t.string "place"
     t.float "amount"
-    t.date "date"
-    t.bigint "users_id"
-    t.bigint "house_holds_id"
+    t.date "expense_date"
+    t.string "expendable_type"
+    t.bigint "expendable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["date"], name: "index_expenses_on_date"
-    t.index ["house_holds_id"], name: "index_expenses_on_house_holds_id"
-    t.index ["users_id"], name: "index_expenses_on_users_id"
+    t.index ["expendable_type", "expendable_id"], name: "index_expenses_on_expendable_type_and_expendable_id"
+    t.index ["expense_date"], name: "index_expenses_on_expense_date"
+  end
+
+  create_table "house_hold_ownerships", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "house_hold_id"
+    t.index ["house_hold_id"], name: "index_house_hold_ownerships_on_house_hold_id"
+    t.index ["user_id"], name: "index_house_hold_ownerships_on_user_id"
   end
 
   create_table "house_holds", force: :cascade do |t|
@@ -55,11 +61,12 @@ ActiveRecord::Schema.define(version: 20170531015646) do
     t.date "due_date"
     t.boolean "is_paid", default: false
     t.bigint "asignee_id"
-    t.bigint "house_holds_id"
+    t.bigint "house_hold_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "amount"
     t.index ["asignee_id"], name: "index_services_on_asignee_id"
-    t.index ["house_holds_id"], name: "index_services_on_house_holds_id"
+    t.index ["house_hold_id"], name: "index_services_on_house_hold_id"
     t.index ["is_paid"], name: "index_services_on_is_paid"
   end
 

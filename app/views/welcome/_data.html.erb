@@ -1,0 +1,8 @@
+<div class="card">
+  <div class="card-header">
+    <%= title %>
+  </div>
+  <div class="card-block">
+    <%= render items.klass.to_s.underscore.pluralize + "/" + items.klass.to_s.underscore.pluralize, items: items%>
+  </div>
+</div>

@@ -25,18 +25,22 @@
             <ul class="nav ">
               <li class="nav-item active">
 
-                <%= link_to "Houses", house_holds_path, {:class => "nav-link"} %>
+                <%= link_to "My Houses", house_holds_path, {:class => "nav-link"} %>
               </li>
               <li class="nav-item">
-                <%= link_to "Services", services_path, {:class => "nav-link"} %>
+                <%= link_to "My Expenses", user_expenses_path(current_user), {:class => "nav-link"}  rescue nil %>
               </li>
               <li class="nav-item">
-                <%= link_to "Expenses", expenses_path, {:class => "nav-link"} %>
+                <%= current_user.email rescue nil %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign Out", destroy_user_session_path %>
               </li>
             </ul>
           </div>
 
       </nav>
+      <br>
       <div class="container-fluid">
         <%= yield %>
       </div>

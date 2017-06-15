@@ -4,7 +4,7 @@ class HouseHoldsController < ApplicationController
   # GET /house_holds
   # GET /house_holds.json
   def index
-    @house_holds_master = HouseHold.where(:master => current_user)
+    @house_holds_master = current_user.admin_houses
     @house_holds_member = current_user.house_holds
     @house_holds = @house_holds_master.to_a.concat @house_holds_member.to_a
     @house_holds.uniq!
@@ -17,8 +17,10 @@ class HouseHoldsController < ApplicationController
 
   # GET /house_holds/new
   def new
-    @house_hold = HouseHold.new
-    @users = User.where.not(:id => current_user    ).to_a.collect { |u| [u.email, u.id]}
+
+    @house_hold = current_user.admin_houses.build
+    @users = User.where.not(:id => current_user).to_a.collect { |u| [u.email, u.id]}
+
 
   end
 
@@ -29,9 +31,7 @@ class HouseHoldsController < ApplicationController
   # POST /house_holds
   # POST /house_holds.json
   def create
-    @house_hold = HouseHold.new(house_hold_params)
-    @house_hold.master = current_user
-    @house_hold.users << current_user
+    @house_hold = current_user.admin_houses.build(house_hold_params)
 
     respond_to do |format|
       if @house_hold.save
@@ -83,6 +83,6 @@ class HouseHoldsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_hold_params
-      params.require(:house_hold).permit(:name, :description, {:user_ids => []})
+      params.require(:house_hold).permit(:name, :description, :address, {:admin_ids => []}, {:user_ids => []})
     end
 end

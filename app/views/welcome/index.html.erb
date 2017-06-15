@@ -1,63 +1,19 @@
-<div id="welcome">
-
-  <h2>Hello World</h2>
-  <p>
-    The time is now: <%= Time.now %>
-
-    <ul>
-      <li>
-        <h3>crear casa</h3>
-        <ul>
-          <li>agregar servicio</li>
-          <li>invitar a otros usuarios</li>
-          <li></li>
-        </ul>
-      </li>
-      <li>cargar gasto</li>
-    </ul>
-  </p>
-
-  <h3>Casas</h3>
-  <table class="table">
-    <% @houses.each do |house_hold| %>
-        <tr>
-          <td><%= house_hold.name %></td>
-          <td><%= house_hold.description %></td>
-          <td><%= house_hold.master.email %></td>
-
-        </tr>
-    <% end %>
-  </table>
-
-
-  <h3>Servicios Asignados</h3>
-  <table class="table">
-    <% @services.each do |service| %>
-        <tr>
-          <td><%= service.name %></td>
-          <td><%= service.description %></td>
-          <td><%= service.due_date %></td>
-
-        </tr>
-    <% end %>
-  </table>
-
-  <h3>Ultimos Gastos</h3>
-  <table class="table">
-    <% @expenses.each do |expense| %>
-        <tr>
-          <td><%= expense.name %></td>
-
-          <td><%= expense.amount %></td>
-        </tr>
-    <% end %>
-    <% @house_expenses.each do |expense| %>
-        <tr>
-          <td><%= expense.name %></td>
-
-          <td><%= expense.amount %></td>
-        </tr>
-    <% end %>
-  </table>
-
+<div class="container-fluid" id="welcome">
+  <div class="row">
+    <div class="col-sm-6">
+      <%= render "data", title: "Gastos", items: @expenses %>
+    </div>
+    <div class="col-sm-6">
+      <%= render "data", title: "Casas", items: @houses %>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= render "data", title: "Servicios Asignados", items: @services %>
+    </div>
+    <div class="col-sm-6">
+      <%= render "data", title: "Gastos de la Casa", items: @house_expenses %>
+    </div>
+  </div>
 </div>

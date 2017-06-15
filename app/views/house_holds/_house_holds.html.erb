@@ -1,0 +1,14 @@
+<table class="table table-bordered primary table-responsive">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Address</th>
+  </tr>
+  </thead>
+  <% @houses.each do |house| %>
+      <tr>
+        <%= render house, house_hold: house%>
+      </tr>
+  <% end %>
+</table>

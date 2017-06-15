@@ -2,5 +2,7 @@
 
 <%= render 'form', house_hold: @house_hold %>
 
+<%= link_to 'Agregar Servicio', new_house_hold_service_path(@house_hold) %> |
+<%= link_to 'Agregar Gasto', new_house_hold_expense_path(@house_hold) %> |
 <%= link_to 'Show', @house_hold %> |
 <%= link_to 'Back', house_holds_path %>

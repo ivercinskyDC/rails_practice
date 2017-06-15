@@ -15,7 +15,7 @@ class CreateSchema < ActiveRecord::Migration[5.1]
       t.date :due_date, nullable: false
       t.boolean :is_paid, default: false, index: true
       t.references :asignee, index: true
-      t.belongs_to :house_holds, index: true
+      t.belongs_to :house_hold, index: true
       t.timestamps
     end
 
@@ -24,9 +24,8 @@ class CreateSchema < ActiveRecord::Migration[5.1]
       t.text :description
       t.string :place
       t.float :amount
-      t.date :date, index: true
-      t.belongs_to :users, index: true
-      t.belongs_to :house_holds, index: true
+      t.date :expense_date, index: true
+      t.references :expendable, polymorphic: true, index: true
       t.timestamps
     end
 
