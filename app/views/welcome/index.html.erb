@@ -1,19 +1,19 @@
 <div class="container-fluid" id="welcome">
   <div class="row">
     <div class="col-sm-6">
-      <%= render "data", title: "Gastos", items: @expenses %>
+      <%= render "data", title: "Gastos", items: @expenses unless @expenses.nil? %>
     </div>
     <div class="col-sm-6">
-      <%= render "data", title: "Casas", items: @houses %>
+      <%= render "data", title: "Casas", items: @houses  unless @houses.nil? %>
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-sm-6">
-      <%= render "data", title: "Servicios Asignados", items: @services %>
+      <%= render "data", title: "Servicios Asignados", items: @services unless @services.nil?  %>
     </div>
     <div class="col-sm-6">
-      <%= render "data", title: "Gastos de la Casa", items: @house_expenses %>
+      <%= render "data", title: "Gastos de la Casa", items: @house_expenses unless @house_expenses.nil?  %>
     </div>
   </div>
 </div>
